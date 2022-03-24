@@ -1,0 +1,25 @@
+user_homepage:
+    path:     /home
+    defaults: { _controller: UserBundle:Default:index }
+
+mesdemandes:
+    path:     /mes_demandes
+    defaults: { _controller: UserBundle:Default:mes_demandes }
+demandeconge:
+    path: /demandeconge
+    defaults: { _controller: UserBundle:Default:demandeconge }
+userinformations:
+    path: /userinformations
+    defaults: { _controller: UserBundle:Default:userinformations }
+ajoutuser:
+    path: /personel/ajoutuser
+    defaults: { _controller: UserBundle:Default:ajoutuser }    
+modifieruserinfo:
+    path: /modifieruserinfo
+    defaults: { _controller: UserBundle:Default:modifieruserinfo }
+absenceuser:
+    path: /absenceuser
+    defaults: { _controller: UserBundle:Default:absenceuser }
+ajoutinfo:
+    path: /personel/ajoutinfo
+    defaults: { _controller: UserBundle:Default:ajoutinfo }

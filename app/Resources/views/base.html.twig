@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+   
+<head>
+        <meta charset="utf-8">
+        <link rel="shortcut icon" href="{{asset("template/assets/images/favicon_1.ico")}}">
+        <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
+		<meta name="author" content="Coderthemes">
+        <!----><title>{% block head %}Gestion Profile Personnel{% endblock %}</title>
+        <!--Morris Chart CSS -->
+		<link rel="stylesheet" href="{{asset("template/assets/plugins/morris/morris.css")}}">
+        <link href="{{asset("template/assets/css/bootstrap.min.css")}}" rel="stylesheet" type="text/css" />
+        <link href="{{asset("template/assets/css/core.css")}}" rel="stylesheet" type="text/css" />
+        <link href="{{asset("template/assets/css/components.css")}}" rel="stylesheet" type="text/css" />
+        <link href="{{asset("template/assets/css/icons.css")}}" rel="stylesheet" type="text/css" />
+        <link href="{{asset("template/assets/css/pages.css")}}" rel="stylesheet" type="text/css" />
+        <link href="{{asset("template/assets/css/responsive.css")}}" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="{{asset("template/vendors/font-awesome/css/font-awesome.min.css")}}">
+        <link rel="stylesheet" href="{{asset("template/vendors/themify-icons/css/themify-icons.css")}}">
+        <link rel="stylesheet" href="{{asset("template/vendors/flag-icon-css/css/flag-icon.min.css")}}">
+        <link rel="stylesheet" href="{{asset("template/vendors/selectFX/css/cs-skin-elastic.css")}}">
+        <link rel="stylesheet" href="{{asset("template/vendors/jqvmap/dist/jqvmap.min.css")}}">
+        <link rel="stylesheet" href="{{asset("template/vendors/datatables.net-bs4/css/dataTables.bootstrap4.min.css")}}">
+        <link rel="stylesheet" href="{{asset("template/vendors/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css")}}">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" >
+        {% block style %} {% endblock %}
+
+    </head>
+    <body class="fixed-left">
+        <!-- Begin page -->
+        <div id="wrapper">
+            <!-- Top Bar Start -->
+            <div class="topbar">
+                <!-- LOGO -->
+                <div class="topbar-left">
+                    <div class="text-center">
+                        <a href="index.html" class="logo"><i class="fab fa-product-hunt"></i><span>R<i class="md md-album"></i>FILE</span></a>
+                    </div>
+                </div>
+                <!-- Button mobile view to collapse sidebar menu -->
+                <div class="navbar navbar-default" role="navigation">
+                    <div class="container">
+                        <div class="">
+                            <div class="pull-left">
+                                <button class="button-menu-mobile open-left">
+                                    <i class="ion-navicon"></i>
+                                </button>
+                                <span class="clearfix"></span>
+                            </div>
+                            <form role="search" class="navbar-left app-search pull-left hidden-xs">
+			                     <input type="text" placeholder="Search..." class="form-control">
+			                     <a href=""><i class="fa fa-search"></i></a>
+			                </form>
+                            <ul class="nav navbar-nav navbar-right pull-right">
+                                <li class="dropdown hidden-xs">
+                                    <a href="#" data-target="#" class="dropdown-toggle waves-effect" data-toggle="dropdown" aria-expanded="true">
+                                        <i class="icon-bell"></i> <span class="badge badge-xs badge-danger"></span>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-lg">
+                                        <li class="notifi-title"><span class="label label-default pull-right">New</span>Notification</li>
+                                        <li class="list-group nicescroll notification-list">
+                                           <!-- list item-->
+                                        <li>
+                                            <a href="javascript:void(0);" class="list-group-item text-right">
+                                                <small class="font-600">See all notifications</small>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="hidden-xs">
+                                    <a href="#" id="btn-fullscreen" class="waves-effect"><i class="icon-size-fullscreen"></i></a>
+                                </li>
+                                {% if is_granted("ROLE_SUPER_ADMIN") %}
+                                <li class="dropdown">
+                                    <a href="" class="dropdown-toggle profile waves-effect" data-toggle="dropdown" aria-expanded="true"><img src="{{asset("template/assets/images/users/avatar-1.png")}}" alt="user-img" class="img-circle"> </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{{ url('admininformations') }}" ><i class="ti-user m-r-5"></i> Profile</a></li>
+                                        <li><a href="{{logout_path('main')}}"><i class="ti-power-off m-r-5"></i> Logout</a></li>
+                                    </ul>{% else %}
+                                        <li class="dropdown">
+                                                <a href="" class="dropdown-toggle profile waves-effect" data-toggle="dropdown" aria-expanded="true"><img src="{{asset("template/assets/images/users/avatar-1.png")}}" alt="user-img" class="img-circle"> </a>
+                                                <ul class="dropdown-menu">
+                                        <li><a href="{{ url('userinformations') }} " ><i class="ti-user m-r-5"></i> Profile</a></li>
+                                        <li><a href="{{logout_path('main')}}"><i class="ti-power-off m-r-5"></i> Logout</a></li>
+                                    </ul>
+                                </li>{% endif %}
+                            </ul>
+                        </div>
+                        <!--/.nav-collapse -->
+                    </div>
+                </div>
+            </div>
+            <!-- ========== Left Sidebar Start ========== -->
+            <div class="left side-menu">
+                <div class="sidebar-inner slimscrollleft">
+                    <!--- Divider -->
+                    <div id="sidebar-menu">
+                        <ul>
+                        	<li class="text-muted menu-title">Navigation</li>
+                            <li class="has_sub">
+                                <a href="{{ path('homepage')}}" class="waves-effect waves-light "><i class="ti-home"></i> <span> Acceuil </span> </a>   
+                            </li>
+                            {% if is_granted("ROLE_SUPER_ADMIN") %}
+                            <li class="has_sub">
+                                <a class="waves-effect waves-light  "><i class="fas fa-users"></i><span> Personnel </span> </a>
+                                <ul class="list-unstyled">
+                                    <li><a  href="{{ path('liste')}}"> Liste Personnel </a></li>
+                                    <li><a href="{{ path('fos_user_registration_register') }}">Ajouter Personnel </a></li>
+                                    <li><a href="{{ path('modifieruser')}}">Information du Personnel</a></li>
+                                </ul>
+                            </li>{% endif %}
+                            {% if is_granted("ROLE_SUPER_ADMIN") %}
+                            <li class="has_sub">
+                                <a  class="waves-effect waves-light  "><i class="fas fa-user-nurse"></i><span> Absence </span> </a>
+                        <ul class="list-unstyled">
+                            <li><a href="{{ path('absence')}}">Gerer Absence</a></li>
+                            <li><a href="{{ path('show_absence')}}">Liste Des Absences</a></li>
+                        </ul>{% endif %}
+                        {% if is_granted("ROLE_ADMIN") %}
+                        <li class="has_sub">
+                            <a href="{{ url('absenceuser') }}" class="waves-effect waves-light "> <i class="fas fa-user-nurse"></i><span> Mes Absences  </span> </a>   
+                        </li>{% endif %}
+                    </li>
+                    <li class="has_sub">
+                        <a  class="waves-effect waves-light  "><i class="fas fa-globe-africa"></i><span> Conge </span> </a>
+                        <ul class="list-unstyled">
+                            {% if is_granted("ROLE_SUPER_ADMIN") %}
+                            <li><a href="{{ url('listedemande') }}">Liste Des Demandes </a></li>
+                            {% else %}
+                            <li><a href="{{ url('demandeconge') }}">Demande Congés</a></li>
+                            <li><a href="{{ url('mesdemandes') }}">Mes Demandes Congés</a></li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                    
+                            {% if is_granted("ROLE_SUPER_ADMIN") %}
+                            <li class="has_sub">
+                                <a  class="waves-effect waves-light  "><i class="fas fa-globe-africa"></i><span> CRM </span> </a>
+                                <ul class="list-unstyled">
+                            <li><a href="{{ url('contra_index') }}">Type contrat</a></li>
+                            <li><a href="{{ url('profession_index') }}">Type profession</a></li>
+                            {% endif %}
+
+                    </div>
+                </div>
+            </div>
+            <!-- Left Sidebar End -->
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="content-page">
+                <!-- Start content -->
+                <div class="content">
+                    <div class="container">
+                        <!-- Page-Title -->
+                        <div class="row">
+                            <div class="col-sm-12">
+                               
+                                {%block body%} {% endblock %}
+                                
+            </div>
+        </div>
+        <script src="{{asset("template/assets/js/jquery.min.js")}}"></script>
+        <script src="{{asset("template/assets/js/bootstrap.min.js")}}"></script>
+        <script src="{{asset("template/assets/js/detect.js")}}"></script>
+        <script src="{{asset("template/assets/js/fastclick.js")}}"></script>
+        <script src="{{asset("template/assets/js/jquery.slimscroll.js")}}"></script>
+        <script src="{{asset("template/assets/js/jquery.blockUI.js")}}"></script>
+        <script src="{{asset("template/assets/js/waves.js")}}"></script>
+        <script src="{{asset("template/assets/js/wow.min.js")}}"></script>
+        <script src="{{asset("template/assets/js/jquery.nicescroll.js")}}"></script>
+        <script src="{{asset("template/assets/js/jquery.scrollTo.min.js")}}"></script>
+        <script src="{{asset("template/assets/plugins/peity/jquery.peity.min.js")}}"></script>
+        <script src="{{asset("template/assets/plugins/waypoints/lib/jquery.waypoints.js")}}"></script>
+        <script src="{{asset("template/assets/plugins/counterup/jquery.counterup.min.js")}}"></script>
+        <script src="{{asset("template/assets/plugins/morris/morris.min.js")}}"></script>
+        <script src="{{asset("template/assets/plugins/raphael/raphael-min.js")}}"></script>
+        <script src="{{asset("template/assets/plugins/jquery-knob/jquery.knob.js")}}"></script>
+        <script src="{{asset("template/assets/pages/jquery.dashboard.js")}}"></script>
+        <script src="{{asset("template/assets/js/jquery.core.js")}}"></script>
+        <script src="{{asset("template/assets/js/jquery.app.js")}}"></script>
+        <script src="{{asset("template/assets/js/modernizr.min.js")}}"></script>
+        <script src="{{asset("template/vendors/popper.js/dist/umd/popper.min.js")}}"></script>
+        <script src="{{asset("template/assets/js/main.js")}}"></script>
+        <script src="{{asset("template/vendors/chart.js/dist/Chart.bundle.min.js")}}"></script>
+        <script src="{{asset("template/assets/js/dashboard.js")}}"></script>
+        <script src="{{asset("template/assets/js/widgets.js")}}"></script>
+        <script src="{{asset("template/vendors/jqvmap/dist/jquery.vmap.min.js")}}"></script>
+        <script src="{{asset("template/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js")}}"></script>
+        <script src="{{asset("template/vendors/jqvmap/dist/maps/jquery.vmap.world.js")}}"></script>
+        <script src="{{asset("template/vendors/datatables.net/js/jquery.dataTables.min.js")}}"></script>
+        <script src="{{asset("template/vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js")}}"></script>
+        <script src="{{asset("template/vendors/datatables.net-buttons/js/dataTables.buttons.min.js")}}"></script>
+        <script src="{{asset("template/vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js")}}"></script> 
+        <script src="{{asset("template/vendors/datatables.net-buttons/js/buttons.html5.min.js")}}"></script>
+        <script src="{{asset("template/vendors/datatables.net-buttons/js/buttons.print.min.js")}}"></script>
+        <script src="{{asset("template/vendors/datatables.net-buttons/js/buttons.colVis.min.js")}}"></script>
+        <script src="{{asset("template/assets/js/init-scripts/data-table/datatables-init.js")}}"></script>
+        {% block javascript %} {% endblock %}
+    </body>
+</html>

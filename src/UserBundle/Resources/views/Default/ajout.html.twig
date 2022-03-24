@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{%block body%}
+                                          
+
+
+  <div class="container">
+
+            <div class="row">
+                <div class="col-md-8  mx-auto mt-4">
+                    <div class="card">
+                            <h3 class="card-title text-info pt-2 px-3 text-center mb-0">Ajouter Personnel</h3>
+                            <hr>                           
+                        <div class="card-body">
+  
+
+                            <form method="post" action=""  enctype="multipart/form-data">
+                              <div class="form-inline">
+                                    <label for="Name">Name</label>
+                                    <input type="text" class="form-control"placeholder="Name" name="name" id="Name" >
+                              </div>
+
+                              <div class="form-inline">
+                                    <label for="prenom">Last Name</label>
+                                    <input type="text" class="form-control"placeholder="lastname" name="lastname" id="lastname">
+                              </div>
+
+                              <div class="form-inline">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control"placeholder="Email" name="email" id="email">
+                              </div>
+
+                              <div class="form-inline">
+                                    <label for="DateNaissance">Date Naissance</label>
+                                    <input type="date" class="form-control" name="datenaissance" id="dateNaissance">
+                              </div>
+
+                                <div class="form-inline">
+                                    <label for="service">Service</label>
+                                    <input type="text" class="form-control"placeholder="service" name="service" id="service">
+                                </div>
+
+                                <div class="form-inline">
+                                    <label for="tel">Tel</label>
+                                    <input type="number" class="form-control"placeholder="numero telephone" name="tel" id="tel">
+                                </div>
+                                    <div class="form-inline">
+                                    <label for="Adresse">Adresse</label>
+                                    <input type="text" class="form-control" placeholder="Adresse" name="Adresse" id="Adresse">
+                                </div><br>
+
+                                <div class="form-inline">
+                                    <label for="CIN">Cin</label>
+                                    <input type="text" class="form-control" placeholder="carte identité nat" name="cin" id="cin">
+                                </div><br>
+                            
+                                <div>
+                                    <label for="photo">Upload Photo </label>
+                                    <input type="file" name="avatar">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit"class="btn btn-success" name ="submit"> Valider </button>
+                                </div>
+                                <figure >
+                                
+                                </figure>       
+                                 
+
+                            </form>                          
+                        </div>
+                    </div>
+                </div>
+         </div>
+   </div> 
+{% endblock %}

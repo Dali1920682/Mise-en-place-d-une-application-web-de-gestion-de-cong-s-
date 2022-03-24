@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    
+
+    <div class="row">
+            <div class="col-sm-12">
+                <div class="card-box table-responsive">
+                        <h4 class="m-t-0 header-title"><b>Type  profession</b></h4>
+                             <table id="datatable" class="table table-striped table-bordered">
+    
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Profession</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for typeprofession in typeprofessions %}
+            <tr>
+                <td><a href="{{ path('profession_show', { 'id': typeprofession.id }) }}">{{ typeprofession.id }}</a></td>
+                <td>{{ typeprofession.profession }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('profession_show', { 'id': typeprofession.id }) }}">voir</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('profession_edit', { 'id': typeprofession.id }) }}">modifier</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</div>
+</div>
+
+
+
+</div>
+    <ul>
+        <li>
+            <a href="{{ path('profession_new') }}">
+                    Créer un nouveau type</a>
+        </li>
+    </ul>
+{% endblock %}

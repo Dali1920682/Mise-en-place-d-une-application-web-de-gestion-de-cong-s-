@@ -1,0 +1,146 @@
+{% extends 'base.html.twig' %}
+
+{% block style %}
+<link href="{{asset("assets/plugins/magnific-popup/dist/magnific-popup.css")}}" />
+<link href="{{asset("assets/plugins/jquery-datatables-editable/datatables.css")}}" />
+<link href="{{asset("assets/css/icons.css")}}"  rel="stylesheet" type="text/css" />
+
+{% endblock %}
+{%block body%}
+
+
+    <div class="row">
+    <div class="col-sm-12">
+        <div class="card-box table-responsive">
+                <h4 class="m-t-0 header-title">Liste <b> Des Personnel </b></h4>
+                {#<div> 
+                <button  data-toggle="modal" data-target="#add-category" class="btn btn-primary "><i class="fa fa-pencil"></i>Modifier </button>
+            </div>#}
+            <div><a class="btn btn-success" href="{{ path('fos_user_registration_register') }}">Ajouter un nouveau Personnel</a></div>
+        </br> 
+                <table id="datatable" class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                       <th>Name</th> 
+                       <th>Date occupation Contrat</th>
+                       <th>Profession</th>
+                       <th>Type de Contrat</th>
+                       <th class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="gradeX">
+                            {% for emp in info_liste %}
+                             <td>{{ emp.getUser }}</td>
+                             <td>{{ emp.getdateoc| date('d-m-y') }}</td>
+                             <td>{{ emp.getTypeprofession.profession}}</td>
+                             <td>{{ emp.getTypecontrat.contrat}}</td>
+                             <td class="actions">
+                                <center>
+                                    <a href="javascript:void(0);" data-toggle="modal" data-target="#add-category" class="on-default remove-row"><i class="fa fa-edit"></i></a> 
+                                    <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+                                </center>
+                                
+                                <div class="modal fade none-border" id="add-category">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title"><strong>Modifier</strong> Information</h4></div>
+                                                     <div class="modal-body">
+                                                         <form  method="post"  enctype="multipart/form-data" >
+                                                            
+                                                                <div class="row">
+                                                                <div class="col-md-3">
+                                                                <label class="control-label">Choose User</label>
+                                                                <select class="form-control form-white"   id="user" name="user">
+                                                                    <option>choose ..</option>
+                                                                    {% for emp in info_liste %}
+                                                                    <option >{{ emp.getUser}}</option>
+                                                                    {% endfor %}
+                                                                    </select>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                    <label class="control-label">Date contrat</label>
+                                                                    <input type="date" class="form-control form-white "placeholder="dot" name="dot" id="dot">
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                <label class="control-label"> Type Contrat </label>
+                                                                <select class="form-control form-white"  name ="contrat_type" id="contrat_type">
+                                                                    
+                                                                    <option>choose ..</option>
+                                                                    {% for emp in type_contrat %}
+                                                                    <option >{{ emp.getcontrat }}</option>
+                                                                    {% endfor %}
+                                                                </select>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                <label class="control-label">Type Profession </label>
+                                                                <select class="form-control form-white"  name ="Profession" id="Profession">
+                                                                    <option>choose ..</option>
+                                                                    {% for emp in type_profession %}
+                                                                    <option >{{ emp.getprofession }}</option>
+                                                                    {% endfor %}
+                                                                </select>
+                                                                
+                                                                </div>
+                                                                </div>
+                                                
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-white waves-effect" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-danger ">Enregistrer</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </form>
+                            </td>
+                        </tr>
+                            {% endfor %} 
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div> 
+ 
+
+
+
+    {% block javascripts %}
+    <script>
+             var resizefunc = [];
+         </script>
+ <script>
+     function selectChange(val) {
+         //Set the value of action in action attribute of form element.
+         //Submit the form
+         $('#myForm').submit();
+     }
+     </script>
+         <!-- jQuery  -->
+         <script src="{{asset("assets/js/jquery.min.js")}}"></script>
+         <script src="{{asset("assets/plugins/datatables/jquery.dataTables.min.js")}}"></script>
+         <script src="{{asset("assets/plugins/datatables/dataTables.bootstrap.js")}}"></script>
+         <script src="{{asset("assets/plugins/datatables/dataTables.buttons.min.js")}}"></script>
+         <script src="{{asset("assets/plugins/datatables/dataTables.fixedHeader.min.js")}}"></script>
+         <script src="{{asset("assets/plugins/datatables/dataTables.keyTable.min.js")}}"></script>
+         <script src="{{asset("assets/plugins/datatables/dataTables.responsive.min.js")}}"></script>
+         <script src="{{asset("assets/plugins/datatables/responsive.bootstrap.min.js")}}"></script>
+         <script src="{{asset("assets/plugins/datatables/dataTables.scroller.min.js")}}"></script>
+         <script src="{{asset("assets/pages/datatables.init.js")}}"></script>
+         <script type="text/javascript">
+             $(document).ready(function() {
+                 $('#datatable').dataTable();
+                 $('#datatable-keytable').DataTable( { keys: true } );
+                 $('#datatable-responsive').DataTable();
+                 $('#datatable-scroller').DataTable( { ajax: "assets/plugins/datatables/json/scroller-demo.json", deferRender: true, scrollY: 380, scrollCollapse: true, scroller: true } );
+                 var table = $('#datatable-fixed-header').DataTable( { fixedHeader: true } );
+             } );
+             TableManageButtons.init();
+         </script>
+ <script src="{{asset("template/assets/js/jquery.min.js")}}"></script>
+ 
+ {% endblock %}
+{% endblock %}

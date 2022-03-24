@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{%block body%}
+<div class="container">
+    <div class="card"><h3 class="card-title text-info pt-2 px-3 text-center mb-0">Mes Absences</h3>
+        <div class="card-body">
+                <table class="table">
+                        <thead class="thead-dark">
+                    <tr>
+                        <th>User</th>
+                        <th>Date Absence</th>
+                        <th>Etat Absence </th>
+                        
+                    </tr><tbody>{% for emp in absence_list %}
+                        <tr> 
+                        </thead>
+                            <td>{{ emp.getuser}}</td>
+                            <td>{{ emp.getdate | date('d-m-y') }}</td>
+                            <td>{{ emp.getetatabsence }}</td>
+                        </tr>{% endfor %}</tbody></table>              
+                </div>
+        </div>
+    </div>
+</div> 
+{% endblock %}

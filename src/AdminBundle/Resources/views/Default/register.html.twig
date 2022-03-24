@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{%block body%}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{{ form_start(form, {'method': 'post', 'action':
+ path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+    {{ form_widget(form) }}
+
+
+    
+</br>
+    <div>
+        <input class="btn btn-primary" type="submit" value="enregstrer" />
+    </div>
+{{ form_end(form) }}
+
+{% endblock %}

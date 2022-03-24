@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{%block body%}
+{% block style %} 
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style type="text/css">
+	
+    	 .inf-content{
+    border:1px solid #DDDDDD;
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    border-radius:10px;
+    box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.3);
+}
+.w3-btn {width:150px;}			                                                      
+    </style>
+   {% endblock %}
+   <div class="row">
+    <div class="col-sm-12">
+     <div class="card-box">
+      <div class="container bootstrap snippet">
+       <div class="panel-body inf-content">
+        <div class="col-lg-15">
+            <div class="col-md-4"><center> <img alt="" style="width:280px;height: 280px;" title="" class="img-circle" src="{{asset('uploads/avatars/')}}{{(userinformations.photo is defined) ? userinformations.photo:'&.jpg'}}" data-original-title="Usuario"> </center></div>
+                <div class="col-md-6"><strong>Profile Informations </strong><br>
+                    <div class="table-responsive">
+                        <table class="table table-condensed table-responsive table-user-information">
+                       
+                            <tbody>
+                                <tr>    
+                                    <td><strong><span class="fas fa-user-circle"></span> Name</strong></td>
+                                    <td>{{(userinformations.name is defined) ? userinformations.name:'--'}}</td>
+                                </tr>
+
+                                <tr>        
+                                    <td><strong><span class="fas fa-user-circle"></span> Lastname</strong></td>
+                                  
+                                    <td>{{(userinformations.Lastname is defined) ? userinformations.Lastname:'--'}}</td>
+                                </tr>
+
+                                <tr>        
+                                    <td><strong> <span class="fas fa-calendar-alt"></span> Date de Naissance</strong></td>
+                                    
+                                    <td>{{(userinformations.datenaissance is defined) ? userinformations.datenaissance|date("m/d/Y"):'--'}}</td>
+                                </tr>
+                                
+                                <tr>        
+                                    <td><strong> <span class="fas fa-envelope"></span> Email</strong></td>
+                                    
+                                    <td>{{(userinformations.Email is defined) ? userinformations.Email:'--'}}</td>
+                                </tr>
+
+
+                                <tr>        
+                                    <td><strong><span <i class="fas fa-briefcase"></i></span> Service</strong></td>
+                                    
+                                    <td>{{(userinformations.Service is defined) ? userinformations.Service:'--'}}</td>
+                                </tr>
+                            
+                                <tr>        
+                                    <td><strong><span <i class="fas fa-mobile-alt"></i></span> Telephone</strong></td>
+                                   
+                                    <td>{{(userinformations.Tel is defined) ? userinformations.Tel:'--'}}</td>
+                                </tr>
+
+                                <tr>        
+                                    <td><strong><span <i class="fas fa-home"></i></span> Adresse</strong></td>
+                                    
+                                    <td>{{(userinformations.Adresse is defined) ? userinformations.Adresse:'--'}}</td>
+                                </tr>
+                                
+                                <tr>        
+                                    <td><strong><span <i class="fas fa-address-card"></i></span> Carte identité National</strong></td>
+                                    
+                                    <td>{{(userinformations.Cin is defined) ? userinformations.Cin:'--'}}</td>
+                                </tr>                                    
+                            </tbody>
+                        </table>
+            
+                <a href="{{ url('modifieruserinfo') }}"><input class="w3-button w3-blue w3-round-xxlarge" type="submit" value="Modifier"></a>
+            </div>
+
+{% endblock %}

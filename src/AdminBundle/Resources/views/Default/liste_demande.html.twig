@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+
+
+{%block body%}
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card-box table-responsive">
+                <h4 class="m-t-0 header-title"><b>Liste Des demandes Congés</b></h4>
+                     <table id="datatable" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Personnel</th>
+                                <th>Date demande</th>
+                                <th>Date départ</th>
+                                <th>Date retour</th>
+                                <th>Délai-congé </th>
+                                <th>Type de congé </th>
+                                <th>Decision</th>
+                            </tr>
+                        </thead>
+                            <tbody>
+                                {% for emp in demande_list %}
+                                 
+                            <tr>
+                                <td>{{ emp.getUser}}</td>
+                                <td>{{ emp.getDateDemande | date('d-m-y') }}</td>
+                                <td>{{ emp.getDateDepart | date('d-m-y')}}</td>
+                                <td>{{ emp.getdateretour | date('d-m-y')}}</td>
+                                <td>{{ emp.getnbjour }}</td>
+                                <td>{{ emp.gettypec }}</td>
+                            <td>        
+                                 {% if emp.getdecision == 'En Attente'  %}  
+                                    <form method="post" id="myForm">  
+                                        <select type="string" class="form-control form-control-sm select_congé" name="decision" value={{emp.getdecision}} onChange=selectChange(this.value) > 
+                                        <option value="-1">Select</option>
+                                        <option {% if emp.getdecision == 'Accepter'  %} selected {% endif %}>Accepter</option>
+                                        <option {% if emp.getdecision == 'Refuser'  %} selected {% endif %}>Refuser</option>
+                                        </select>
+                                        <br>
+                                        <input  name="conge_id" type="hidden" value={{ emp.getid}}>
+                                    </form>
+                                        {% elseif emp.getdecision == 'Refuser' %}
+                                        <a class="text-danger">{{emp.getdecision}}</a>
+                                        {% else %}
+                                        <a class="text-success">{{emp.getdecision}}</a>  
+                                        {% endif %}
+                           </td>
+                            </tr>
+                                 {% endfor %}
+                            </tbody>
+                    </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% block javascripts %}
+   <script>
+            var resizefunc = [];
+        </script>
+<script>
+    function selectChange(val) {
+        //Set the value of action in action attribute of form element.
+        //Submit the form
+        $('#myForm').submit();
+    }
+    </script>
+        <!-- jQuery  -->
+        <script src="{{asset("assets/js/jquery.min.js")}}"></script>
+        <script src="{{asset("assets/plugins/datatables/jquery.dataTables.min.js")}}"></script>
+        <script src="{{asset("assets/plugins/datatables/dataTables.bootstrap.js")}}"></script>
+        <script src="{{asset("assets/plugins/datatables/dataTables.buttons.min.js")}}"></script>
+        <script src="{{asset("assets/plugins/datatables/dataTables.fixedHeader.min.js")}}"></script>
+        <script src="{{asset("assets/plugins/datatables/dataTables.keyTable.min.js")}}"></script>
+        <script src="{{asset("assets/plugins/datatables/dataTables.responsive.min.js")}}"></script>
+        <script src="{{asset("assets/plugins/datatables/responsive.bootstrap.min.js")}}"></script>
+        <script src="{{asset("assets/plugins/datatables/dataTables.scroller.min.js")}}"></script>
+        <script src="{{asset("assets/pages/datatables.init.js")}}"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#datatable').dataTable();
+                $('#datatable-keytable').DataTable( { keys: true } );
+                $('#datatable-responsive').DataTable();
+                $('#datatable-scroller').DataTable( { ajax: "assets/plugins/datatables/json/scroller-demo.json", deferRender: true, scrollY: 380, scrollCollapse: true, scroller: true } );
+                var table = $('#datatable-fixed-header').DataTable( { fixedHeader: true } );
+            } );
+            TableManageButtons.init();
+        </script>
+<script src="{{asset("template/assets/js/jquery.min.js")}}"></script>
+<script>
+        function selectChange(val) {
+            //Set the value of action in action attribute of form element.
+            //Submit the form
+            $('#myForm').submit();
+        }
+        </script>
+{% endblock %}
+{% endblock %}

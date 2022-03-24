@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+{%block body%}
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style type="text/css">
+    	 .inf-content{
+    border:1px solid #DDDDDD;
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    border-radius:10px;
+    box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.3);}			                                                      
+    </style>
+
+
+
+
+<div class="row">
+        <div class="col-sm-12">
+         <div class="card-box">
+          <div class="container bootstrap snippet">
+           <div class="panel-body inf-content">
+            <div class="col-lg-15">
+                    <form method="post" enctype="multipart/form-data" >
+                        <div class="col-md-4"><center> <img alt="" style="width:280px;height: 280px;" title="" class="img-circle" src="{{asset('uploads/avatars/')}}{{(userinformations.photo is defined) ? userinformations.photo:'&.jpg'}}" data-original-title="Usuario"> </center></div>                    <div><label for="photo">Change Photo </label><input type="file" name="avatar"></div><br></center></div>
+                          <div class="col-md-6">
+                            <strong>Modifier Informations </strong><br>
+                                <div class="table-responsive">
+                                    <table class="table table-condensed table-responsive table-user-information">
+                                        <tbody>
+                                            
+                                            <tr>    
+                                                <td><strong><span class="fas fa-user-circle"></span>Name</strong></td>
+                                                <td class="text-primary"><input type="text" class="form-control"placeholder=" {{(userinformations.name is defined) ? userinformations.name:'--'}}" name="Name" id="Name"></td>
+                                            </tr>
+                                            <tr>        
+                                                <td><strong><span class="fas fa-user-circle"></span>Lastname</strong></td>
+                                                <td class="text-primary"><input type="text" class="form-control"placeholder="{{(userinformations.Lastname is defined) ? userinformations.Lastname:'--'}}" name="Lastname" id="Lastname"></td>
+                                            </tr>
+                                            <tr>        
+                                                    <td><strong><span <i class="fas fa-calendar-alt"></i></span> Date de Naissance</strong></td>
+                                                    <td class="text-primary"><input type="text" class="form-control"placeholder="{{(userinformations.datenaissance is defined) ? userinformations.datenaissance|date("m/d/Y"):'--'}}" name="datenaissance" id="datenaissance"></td>
+                                                </tr>
+                                            <tr>        
+                                                <td><strong><span class="fas fa-envelope"></span>Email</strong></td>
+                                                <td class="text-primary"><input type="Email" class="form-control"placeholder="{{(userinformations.Email is defined) ? userinformations.Email:'--'}}" name="Email" id="Email"></td>
+                                            </tr>
+
+
+                                            <tr>        
+                                                <td><strong><span <i class="fas fa-briefcase"></i></span>Service</strong></td>
+                                                <td class="text-primary"><input type="text" class="form-control"placeholder="{{(userinformations.Service is defined) ? userinformations.Service:'--'}}" name="service" id="service"></td>
+                                            </tr>
+                                        
+                                            <tr>        
+                                                <td><strong><span <i class="fas fa-mobile-alt"></i></span>  Telephone</strong></td>
+                                                <td class="text-primary"><input type="text" class="form-control"placeholder="{{(userinformations.Tel is defined) ? userinformations.Tel:'--'}}" name="Tel" id="Tel"></td>
+                                            </tr>
+                                            <tr>        
+                                                    <td><strong><span <i class="fas fa-home"></i></span> Adresse</strong></td>
+                                                    <td class="text-primary"><input type="text" class="form-control"placeholder="{{(userinformations.Adresse is defined) ? userinformations.Adresse:'--'}}" name="Adresse" id="Adresse"></td>
+                                                </tr>
+                                            <tr>        
+                                                <td><strong><span <i class="fas fa-address-card"></i></span>Carte identité National</strong></td>
+                                                <td class="text-primary"><input type="text" class="form-control"placeholder=" {{(userinformations.Cin is defined) ? userinformations.Cin:'--'}}" name="cin" id="cin"></td>
+                                            </tr>                                    
+                                        </tbody>
+                                    </table>
+                                    <a href="{{ url('userinformations') }}"><input class="w3-button w3-blue w3-round-xxlarge" type="submit" name ="submit" value="Enregistrer"></a>
+
+                                </div>
+                        </div>
+                    </form>                   
+                    
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>      
+{% endblock %}

@@ -1,0 +1,37 @@
+admin_homepage:
+    path:     /
+    defaults: { _controller: AdminBundle:Default:index }
+
+liste:
+    path:     /personel/liste
+    defaults: { _controller: AdminBundle:Default:liste }
+
+ajout:
+    path:     /personel/ajout
+    defaults: { _controller: AdminBundle:Default:ajout }
+
+listedemande:
+    path:     /liste_demande
+    defaults: { _controller: AdminBundle:Default:liste_demande }
+
+admininformations:
+    path: /admininformations
+    defaults: { _controller: AdminBundle:Default:admininformations }
+
+modifieradmininfo:
+    path: /modifieradmininfo
+    defaults: { _controller: AdminBundle:Default:modifieradmininfo }
+
+modifieruser:
+    path: /modifieruser
+    defaults: { _controller: AdminBundle:Default:modifieruser }
+absence:
+    path: /absence
+    defaults: { _controller: AdminBundle:Default:absence}    
+show_absence:
+    path: /show_absence
+    defaults: { _controller: AdminBundle:Default:show_absence}       
+register:
+    path: /register1
+    defaults: { _controller: AdminBundle:Default:register}
+  

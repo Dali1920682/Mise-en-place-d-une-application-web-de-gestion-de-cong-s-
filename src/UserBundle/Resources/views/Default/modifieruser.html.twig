@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{%block body%}
+
+
+<div class="row">
+    <div class="col-sm-12">
+     <div class="card-box">
+      <div class="container bootstrap snippet">
+       <div class="panel-body inf-content">
+        <div class="col-lg-15">
+            <div class="card"><h3 class="card-title text-info pt-2 px-3 text-center mb-0">Ajouter Informations Personnel</h3>
+               <div class="card-body">
+                   <form method="post" enctype="multipart/form-data">
+                    <div class="form-row">
+                      <div class="form-group col-lg-6">
+                            <label for="Name">Nom</label>
+                            <input type="text" class="form-control" placeholder="Name" name="name" id="Name" >
+                      </div>
+
+                      <div class="form-group col-lg-6 ">
+                            <label for="prenom">Prénom</label>
+                            <input type="text" class="form-control" placeholder="lastname" name="lastname" id="lastname">
+                      </div>
+                    </div>
+                      <div class="form-group col-lg-12 ">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" placeholder="Email" name="email" id="email">
+                      </div>
+
+                      <div class="form-group col-lg-12 ">
+                            <label for="DateNaissance">Date Naissance</label>
+                            <input type="date" class="form-control" name="datenaissance" id="dateNaissance">
+                      </div>
+
+                      <div class="form-row">
+                      <div class="form-group col-md-3">
+                            <label for="Adresse">Adresse</label>
+                            <input type="text" class="form-control" placeholder="Adresse" name="Adresse" id="Adresse">
+                      </div>
+
+                      <div class="form-group col-md-3">
+                          <label for="tel">Tel</label>
+                          <input type="number" class="form-control" placeholder="numero telephone" name="tel" id="tel">
+                      </div>
+                      <div class="form-group col-md-3">
+                            <label for="CIN">CIN</label>
+                            <input type="text" class="form-control" placeholder="Numéro CIN" name="cin" id="cin">
+                      </div>
+                      <div class="form-group col-md-3 ">
+                            <label for="service">Service</label>
+                            <input type="text" class="form-control"placeholder="service" name="service" id="service">
+                      </div>
+                      <div class="form-group col-md-12 ">
+                          <label class="my-1 mr-2" for="date">Date d'occupation de Contrat </label>
+                          <input type="date" class="form-control "placeholder="dot" name="dot" id="dot">
+                      </div>
+                      <div class="form-row">
+                      <div class="form-group col-lg-4 ">
+                        <label class="" for="Personnel">Personnel</label>
+                        <select class="mdb-select md-form colorful-select dropdown-primary form-control " id="user" name="user">
+                          <option selected>Choose...</option>
+                          {% for emp in list %}
+                          <option >{{ emp.getUsername }}</option>
+                          {% endfor %}
+                        </select></div>
+                        <div class="form-group col-lg-4 ">
+                        <label class="my-1 mr-2" for="type">Type Contrat  </label>
+                        <select class="mdb-select md-form colorful-select dropdown-primary form-control " name ="contrat_type" id="contrat_type">
+                          <option selected>Choose...</option>
+                          {% for emp in type_contrat %}
+                          <option >{{ emp.getcontrat }}</option>
+                          {% endfor %}
+                        </select></div>
+                        <div class="form-group col-lg-4 ">
+                      <label class="my-1 mr-2" for="Profession">Profession</label>
+                        <select class="mdb-select md-form colorful-select dropdown-primary form-control  " name ="Profession" id="Profession">
+                          <option selected>Choose...</option>
+                          {% for emp in type_profession %}
+                          <option >{{ emp.getprofession }}</option>
+                          {% endfor %}
+                        </select></div></div>
+                      </div>
+                      <div class="form-group col-lg-12">
+                      <div>
+                        <label for="photo">  Upload Photo </label>
+                        <input type="file" name="avatar">
+                      </div></div>
+                      
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-lg btn-block btn-info">Envoyer</button>
+                           
+                        </div>
+                      
+                      </form>                    
+                </div>
+            </div>
+        </div>
+ </div>
+</div> 
+{% endblock %}
